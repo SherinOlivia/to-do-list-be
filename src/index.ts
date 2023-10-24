@@ -5,11 +5,12 @@ import insertAdmin from './config/superAdminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
 // import * as functions from 'firebase-functions';
-import http, { Server } from 'http'
+// import http, { Server } from 'http'
 
 const app: Express = express()
-const server: Server = http.createServer(app)
-let PORT: number;
+const port = process.env.PORT;
+// const server: Server = http.createServer(app)
+// let PORT: number;
 
 // middleware
 appMiddleware(app)
@@ -38,13 +39,16 @@ insertAdmin();
 // router
 app.use(router)
 
+app.listen(port, () => {
+    console.log(`Server is running on port:${port}`)
+  })
 
-server.listen(0, () => {
-    const address = server.address();
-    if(address && typeof address !== 'string'){
-        PORT = address.port || 6006;
-        console.log(`Server is running on port:${PORT}`)
-    } else {
-        console.error("Server address is not available.")
-    }
-})
+// server.listen(0, () => {
+//     const address = server.address();
+//     if(address && typeof address !== 'string'){
+//         PORT = address.port || 6006;
+//         console.log(`Server is running on port:${PORT}`)
+//     } else {
+//         console.error("Server address is not available.")
+//     }
+// })
