@@ -45,11 +45,15 @@ const loginUser = async (req: Request, res: Response) => {
             res.cookie("access_token", accessToken, {
                 expires: accessTokenExpiration,
                 httpOnly: true,
+                sameSite: "none",
+                secure: true,
             });
 
             res.cookie("refresh_token", refreshToken, {
                 expires: refreshTokenExpiration,
                 httpOnly: true,
+                sameSite: "none",
+                secure: true,
             });
 
             return res.status(200).json(errorHandling({
