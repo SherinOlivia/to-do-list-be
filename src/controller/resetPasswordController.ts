@@ -51,3 +51,5 @@ const resetPasswordRequest = async (req: Request, res: Response) => {
         return res.status(500).json(errorHandling(null, "Password reset failed"));
     }
 };
+
+export { resetPasswordRequest, resetPassword }

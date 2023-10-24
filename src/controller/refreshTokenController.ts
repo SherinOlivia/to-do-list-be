@@ -39,3 +39,5 @@ const refreshTokenRequest = async (req: Request, res: Response) => {
         return res.status(500).json(errorHandling(null, 'Refresh token is invalid or has expired'));
     }
 }
+
+export { refreshTokenRequest }

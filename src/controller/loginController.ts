@@ -72,3 +72,4 @@ const logoutUser = async (req: Request, res: Response) => {
     res.json();
   };
 
+  export { loginUser, logoutUser }
