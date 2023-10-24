@@ -46,6 +46,7 @@ const resetPasswordRequest = async (req: Request, res: Response) => {
 
         resetPasswordCache.del(resetKey);
         return res.status(200).json(errorHandling("Password reset success", null));
+        
     } catch (error) {
         console.error(error);
         return res.status(500).json(errorHandling(null, "Password reset failed"));

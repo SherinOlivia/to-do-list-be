@@ -107,6 +107,6 @@
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
   "lib": ["ES2015"],
-  "include": ["src/**/*", "src/index.ts", "src/controller/registerController.ts"],
+  "include": ["src/**/*", "src/index.ts"],
   "exclude": ["node_modules"],
 }

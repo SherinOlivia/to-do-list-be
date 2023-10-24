@@ -16,6 +16,7 @@ const loginUser = async (req: Request, res: Response) => {
         
         const failedAttempts = failedLoginAttemptsCache.get<number>(email);
         const user = existingUser[0][0];
+        
         console.log(user, "password:", user.password);
         
         if (failedAttempts !== undefined && failedAttempts >= 5) {
