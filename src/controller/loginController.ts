@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { DB } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import bcrypt from 'bcrypt';
-import jwt, { Secret } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import JWT_TOKEN from '../config/jwtConfig';
 import { RowDataPacket } from 'mysql2';
 import NodeCache from 'node-cache';
@@ -24,15 +24,15 @@ const loginUser = async (req: Request, res: Response) => {
         }
 
         const passwordCheck = await bcrypt.compare(password, user.password);
-
+        
         if (passwordCheck) {
-
+            
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
-                refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as jwt.Secret, { expiresIn: "7d" });
+                refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN, { expiresIn: "7d" });
             }
 
-            const accessToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as jwt.Secret, { expiresIn: "24h" });
+            const accessToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN, { expiresIn: "24h" });
             
             // Reset limit login
             failedLoginAttemptsCache.del(email);
