@@ -77,20 +77,20 @@ const getOneUser = async (req: Request, res: Response) => {
     }
 }
 
-// name & address
+// name, city, about_me
 const updateUser = async (req: Request, res: Response) => {
     try {
         const { role, id } = (req as any).user;
 
         const checkId = req.params.id
-        const { name, address } = req.body
+        const { name, city, about_me } = req.body
 
         if ((role !== "staff" && role !== "admin") && id == checkId) {
             await DB.promise().query(`
                 UPDATE railway.users
-                SET name = ?, address = ?
+                SET name = ?, city = ?, about_me = ? 
                 WHERE id = ?`,
-                [name, address, id]);
+                [name, city, about_me, id]);
 
             const updatedData = await DB.promise().query(`
                 SELECT * FROM railway.users
@@ -103,9 +103,9 @@ const updateUser = async (req: Request, res: Response) => {
         } else if (role == "staff" || role == "admin") {
             await DB.promise().query(`
                 UPDATE railway.users
-                SET name = ?, address = ?
+                SET name = ?, city = ?, about_me = ? 
                 WHERE id = ?`,
-                [name, address, checkId])
+                [name, city, about_me, checkId])
 
             const updatedData = await DB.promise().query(`
                 SELECT * FROM railway.users

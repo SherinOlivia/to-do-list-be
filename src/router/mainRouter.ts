@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import authenMiddleware from '../middleware/authenticationMiddleware';
-// import todorouter from './todosRouter';
+// import todorouter from './taskRouter';
 // import userrouter from './usersRouter';
 
 
@@ -13,7 +13,7 @@ router.get("/", function (req: Request, res: Response) {
     })
 })
 
-// router.use('/api/list', authenMiddleware, todorouter)
+// router.use('/api/tasks', authenMiddleware, taskrouter)
 // router.use('/api/users', userrouter)
 
 export default router;
