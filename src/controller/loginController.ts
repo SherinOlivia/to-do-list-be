@@ -26,7 +26,7 @@ const loginUser = async (req: Request, res: Response) => {
         const passwordCheck = await bcrypt.compare(password, user.password);
 
         if (passwordCheck) {
-            // Check if the user already has a refresh token
+
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
                 refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as jwt.Secret, { expiresIn: "7d" });
