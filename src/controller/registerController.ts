@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DBLocal } from '../config/dbConnection';
+import { DB } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import bcrypt from 'bcrypt';
 import { RowDataPacket } from 'mysql2';
@@ -9,14 +9,14 @@ const registerUser = async (req: Request, res: Response) => {
     try {
         const { username, email, password } =  req.body;
         const hashedPass = await bcrypt.hash(password, 10)
-        const [existingUser] = await DBLocal.promise().query(`SELECT * FROM w18MP.users WHERE email = ?`, [email]) as RowDataPacket[];
+        const [existingUser] = await DB.promise().query(`SELECT * FROM railway.users WHERE email = ?`, [email]) as RowDataPacket[];
         
             if (existingUser.length === 0) {
-                const [newUser] = await DBLocal.promise().query(
-                `INSERT INTO w18MP.users (username, email, password, role) VALUES (?, ?, ?, ?)`,
+                const [newUser] = await DB.promise().query(
+                `INSERT INTO railway.users (username, email, password, role) VALUES (?, ?, ?, ?)`,
                 [username, email, hashedPass, 'client']) as RowDataPacket[];
     
-                const getNewUser = await DBLocal.promise().query(`SELECT * FROM w18MP.users WHERE id = ?`, [newUser.insertId]);
+                const getNewUser = await DB.promise().query(`SELECT * FROM railway.users WHERE id = ?`, [newUser.insertId]);
                 return res.status(200).json(errorHandling(getNewUser[0], null));
             } else {
                 return res.status(400).json(errorHandling(null, "Username already exist...!!"));
@@ -32,16 +32,16 @@ const registerUserByAdmin = async (req: any, res: Response) => {
     try {
         const { username, email, password, role } =  req.body;
         const hashedPass = await bcrypt.hash(password, 10)
-        const [existingUser] = await DBLocal.promise().query(`SELECT * FROM w18MP.users WHERE email = ?`, [email]) as RowDataPacket[];
+        const [existingUser] = await DB.promise().query(`SELECT * FROM railway.users WHERE email = ?`, [email]) as RowDataPacket[];
         
         if (req.role === "admin") {
             console.log(req.role, "<=== test check role")
             if (existingUser.length === 0) {
-                const [newUser] = await DBLocal.promise().query(
-                `INSERT INTO w18MP.users (username, email, password, role) VALUES (?, ?, ?, ?)`,
+                const [newUser] = await DB.promise().query(
+                `INSERT INTO railway.users (username, email, password, role) VALUES (?, ?, ?, ?)`,
                 [username, email, hashedPass, role]) as RowDataPacket[];
     
-                const getNewUser = await DBLocal.promise().query(`SELECT * FROM w18MP.users WHERE id = ?`, [newUser.insertId]);
+                const getNewUser = await DB.promise().query(`SELECT * FROM railway.users WHERE id = ?`, [newUser.insertId]);
                 return res.status(200).json(errorHandling(getNewUser[0], null));
             } else {
                 return res.status(400).json(errorHandling(null, "Username already exist...!!"));

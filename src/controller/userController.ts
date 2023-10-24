@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-import { DBLocal } from '../config/dbConnection';
+import { DB } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import { RowDataPacket } from 'mysql2';
 
 // Admin Only!
 const getAllStaff = async (req: Request, res: Response) => {
     try {
-        const allUser = await DBLocal.promise().query('SELECT * FROM w18MP.users WHERE role = ?',["staff"]) as RowDataPacket[]
+        const allUser = await DB.promise().query('SELECT * FROM railway.users WHERE role = ?',["staff"]) as RowDataPacket[]
 
         if (!allUser) {
             return res.status(400).json(errorHandling(null, "User Data Unavailable..."));
@@ -22,7 +22,7 @@ const getAllStaff = async (req: Request, res: Response) => {
 // Staff & Admin only!
 const getAllClient = async (req: Request, res: Response) => {
     try {
-        const clientsData = await DBLocal.promise().query('SELECT * FROM w18MP.users WHERE role = ?',["client"]) as RowDataPacket[]
+        const clientsData = await DB.promise().query('SELECT * FROM railway.users WHERE role = ?',["client"]) as RowDataPacket[]
     
         if (!clientsData) {
             return res.status(400).json(errorHandling(null, "User Data Unavailable..."));
@@ -44,7 +44,7 @@ const userProfile =async (req: Request, res: Response) => {
 
         if (user) { 
             const userId = user.id
-            const userData = await DBLocal.promise().query('SELECT * FROM w18MP.users WHERE id = ?',[userId]) as RowDataPacket[]
+            const userData = await DB.promise().query('SELECT * FROM railway.users WHERE id = ?',[userId]) as RowDataPacket[]
             return res.status(200).json(errorHandling(userData[0], null));
         }
 
@@ -62,10 +62,10 @@ const getOneUser = async (req: Request, res: Response) => {
         const checkId = req.params.id
 
         if (role == "staff" || role == "admin") {
-            const userData = await DBLocal.promise().query('SELECT * FROM w18MP.users WHERE id = ?',[checkId]) as RowDataPacket[]
+            const userData = await DB.promise().query('SELECT * FROM railway.users WHERE id = ?',[checkId]) as RowDataPacket[]
             return res.status(200).json(errorHandling(userData[0], null));
         } else if ((role !== "staff" && role !== "admin") && id == checkId) {
-            const userData = await DBLocal.promise().query('SELECT * FROM w18MP.users WHERE id = ?',[id]) as RowDataPacket[]
+            const userData = await DB.promise().query('SELECT * FROM railway.users WHERE id = ?',[id]) as RowDataPacket[]
             return res.status(200).json(errorHandling(userData[0], null));
         } else {
             return res.status(400).json(errorHandling(null, "User Data Not Found..."));
@@ -86,14 +86,14 @@ const updateUser = async (req: Request, res: Response) => {
         const { name, address } = req.body
 
         if ((role !== "staff" && role !== "admin") && id == checkId) {
-            await DBLocal.promise().query(`
-                UPDATE w18MP.users
+            await DB.promise().query(`
+                UPDATE railway.users
                 SET name = ?, address = ?
                 WHERE id = ?`,
                 [name, address, id]);
 
-            const updatedData = await DBLocal.promise().query(`
-                SELECT * FROM w18MP.users
+            const updatedData = await DB.promise().query(`
+                SELECT * FROM railway.users
                 WHERE id = ?`,[checkId]);
 
 
@@ -101,14 +101,14 @@ const updateUser = async (req: Request, res: Response) => {
                 message: "User Data Updated Successfully",
                 data: updatedData[0]}, null));
         } else if (role == "staff" || role == "admin") {
-            await DBLocal.promise().query(`
-                UPDATE w18MP.users
+            await DB.promise().query(`
+                UPDATE railway.users
                 SET name = ?, address = ?
                 WHERE id = ?`,
                 [name, address, checkId])
 
-            const updatedData = await DBLocal.promise().query(`
-                SELECT * FROM w18MP.users
+            const updatedData = await DB.promise().query(`
+                SELECT * FROM railway.users
                 WHERE id = ?`,[checkId]);
 
             return res.status(200).json(errorHandling({

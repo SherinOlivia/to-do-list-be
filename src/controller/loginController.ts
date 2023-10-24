@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { DBLocal } from '../config/dbConnection';
+import { DB } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import bcrypt from 'bcrypt';
 import jwt, { Secret } from 'jsonwebtoken';
@@ -12,7 +12,7 @@ const failedLoginAttemptsCache = new NodeCache({ stdTTL: 600 });
 const loginUser = async (req: Request, res: Response) => {
     try {
         const { email, password } = req.body;
-        const existingUser = await DBLocal.promise().query("SELECT * FROM w18MP.users WHERE email = ?", [email]) as RowDataPacket[];
+        const existingUser = await DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]) as RowDataPacket[];
         
         const failedAttempts = failedLoginAttemptsCache.get<number>(email);
         const user = existingUser[0][0];
