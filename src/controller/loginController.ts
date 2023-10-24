@@ -29,10 +29,10 @@ const loginUser = async (req: Request, res: Response) => {
             // Check if the user already has a refresh token
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
-                refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as Secret, { expiresIn: "7d" });
+                refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as jwt.Secret, { expiresIn: "7d" });
             }
 
-            const accessToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as Secret, { expiresIn: "24h" });
+            const accessToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN as jwt.Secret, { expiresIn: "24h" });
             
             // Reset limit login
             failedLoginAttemptsCache.del(email);
