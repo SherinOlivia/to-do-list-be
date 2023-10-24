@@ -30,6 +30,7 @@ const loginUser = async (req: Request, res: Response) => {
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
                 refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN, { expiresIn: "7d" });
+                console.log(JWT_TOKEN)
             }
 
             const accessToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN, { expiresIn: "24h" });
