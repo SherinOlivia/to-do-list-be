@@ -35,6 +35,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
                 refreshToken = jsonwebtoken_1.default.sign({ username: user.username, id: user.id, role: user.role }, jwtConfig_1.default, { expiresIn: "7d" });
+                console.log(jwtConfig_1.default);
             }
             const accessToken = jsonwebtoken_1.default.sign({ username: user.username, id: user.id, role: user.role }, jwtConfig_1.default, { expiresIn: "24h" });
             // Reset limit login
