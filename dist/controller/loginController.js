@@ -26,7 +26,7 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const existingUser = yield dbConnection_1.DB.promise().query("SELECT * FROM railway.users WHERE email = ?", [email]);
         const failedAttempts = failedLoginAttemptsCache.get(email);
         const user = existingUser[0][0];
-        console.log(user, "password:", user.password);
+        console.log(user);
         if (failedAttempts !== undefined && failedAttempts >= 5) {
             return res.status(400).json((0, errorHandling_1.errorHandling)('Too many failed login attempts', null));
         }
@@ -35,7 +35,6 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
                 refreshToken = jsonwebtoken_1.default.sign({ username: user.username, id: user.id, role: user.role }, jwtConfig_1.default, { expiresIn: "7d" });
-                console.log(jwtConfig_1.default);
             }
             const accessToken = jsonwebtoken_1.default.sign({ username: user.username, id: user.id, role: user.role }, jwtConfig_1.default, { expiresIn: "24h" });
             // Reset limit login

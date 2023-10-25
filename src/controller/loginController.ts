@@ -17,7 +17,7 @@ const loginUser = async (req: Request, res: Response) => {
         const failedAttempts = failedLoginAttemptsCache.get<number>(email);
         const user = existingUser[0][0];
         
-        console.log(user, "password:", user.password);
+        console.log(user);
         
         if (failedAttempts !== undefined && failedAttempts >= 5) {
             return res.status(400).json(errorHandling('Too many failed login attempts', null));
@@ -30,7 +30,6 @@ const loginUser = async (req: Request, res: Response) => {
             let refreshToken = req.cookies.refresh_token;
             if (!refreshToken) {
                 refreshToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN, { expiresIn: "7d" });
-                console.log(JWT_TOKEN)
             }
 
             const accessToken = jwt.sign({ username: user.username, id: user.id, role: user.role }, JWT_TOKEN, { expiresIn: "24h" });
