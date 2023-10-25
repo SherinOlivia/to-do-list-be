@@ -1,1 +1,132 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/-Z3-Ss4P)
+# Project Milestone 3 Overview
+
+For this week's assignment, we are tasked to create a fullstack app with the theme: "To-do App"
+
+The capabilities of the project are:
+1. CRUD Implementation 
+- Create
+- Read
+- Update
+- Delete (isDeleted / soft delete)
+2. Database 
+- MySQL (& Localhost)
+3. Authentication and Authorization
+- Authentication: JWT (& Bcrypt) & Cookies
+- Authorization: Role-Based Access Control (RBAC)
+
+##  Project Features:
+- **Theme**: To-do App
+- **BCrypt** for Password Hashing
+- **JWT** for Authentication and Authorization
+- **Node-cache** for caching tokens (access token & refresh token)
+- **Cookie-parser** for storing tokens (access token & refresh token)
+- **Typescript** as the programming language
+- **MySQL** for the database service
+- **Railway** as the online database service
+
+## API Endpoints
+
+<p align="center">
+<a href="https://w18sh-ry.up.railway.app/">w18sh-ry.up.railway.app</a>
+</p> 
+
+## Sample Accounts
+```JSON
+Client:
+    "email": "dreya@gmail.com",
+    "password":"dreya123"
+```
+```JSON
+Staff:
+    "email":"zoya@gmail.com",
+    "password":"Zoyaa321"
+```
+```JSON
+Admin:
+    "email":"adminr00@gmail.com",
+    "password":"R00isADMIN"
+```
+<br>
+
+
+## Request Required Data:
+**USERS:**
+```JSON
+Register (default role: client):
+{
+    "username":"yourUsername",
+    "email": "your@email.com",
+    "password":"yourP4ssw0rd"
+}
+```
+```JSON
+Register by Admin (can give roles: client, staff, admin):
+{
+    "username":"yourUsername",
+    "email": "your@email.com",
+    "password":"yourP4ssw0rd",
+    "role": "role"
+}
+```
+```JSON
+Login:
+{
+    "email": "your@email.com",
+    "password":"yourP4ssw0rd"
+}
+```
+```JSON
+Password Reset Request:
+{
+    "email": "your@email.com"
+}
+```
+```JSON
+Password Reset:
+{
+    "password":"yourN3WP4ssw0rd"
+}
+```
+```JSON
+Update (parameter: userId):
+{
+    "name":"yourName",
+    "city":"yourAddress(city/country)",
+    "about_me": ""
+}
+```
+<br>
+
+## API Endpoints
+<p align="center">
+<a href="https://w18sh-ry.up.railway.app/">w18sh-ry.up.railway.app</a>
+</p> 
+
+**USERS**
+<div align="center">
+
+| Name  | HTTP Method | Endpoint | Authentication | Authorization |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| **Homepage** | `GET` |[/](https://w18sh-ry.up.railway.app/) | ❌ | ❌ |
+| **Register User** | `POST` | [/api/users/register](https://w18sh-ry.up.railway.app/api/users/register) | ❌ | ❌ |
+| **Register User By Admin** | `POST` | [/api/users/admin/register](https://w18sh-ry.up.railway.app/api/users/admin/register) | ✔ | **admin** |
+| **Login User** | `POST` | [/api/users/login](https://w18sh-ry.up.railway.app/api/users/login) | ❌ | ❌ |
+| **Logout User** | `POST` | [/api/users/logout](https://w18sh-ry.up.railway.app/api/users/logout) | ✔ | ❌ |
+| **Request Password Reset** | `POST` | [/api/users/resetpassword/request](https://w18sh-ry.up.railway.app/api/users/resetpassword/request) | ✔ | ❌ |
+| **Password Reset** | `POST` | [/api/users/resetpassword](https://w18sh-ry.up.railway.app/api/users/resetpassword) | ✔ | ❌ |
+| **Request Refresh Token** | `POST` | [/api/users/refresh](https://w18sh-ry.up.railway.app/api/users/refresh) | ✔ | ❌ |
+| **Update Name, City, & About Me** | `PATCH` | [/api/users/update/{id}](https://w18sh-ry.up.railway.app/api/users/update/3) | ✔ | **cust**, **staff**, **admin** |
+| **List All Client Data** | `GET` | [/api/users/clients](https://w18sh-ry.up.railway.app/api/users/clients) | ✔ | **staff**, **admin** |
+| **List All Staff Data** | `GET` | [/api/users/staff](https://w18sh-ry.up.railway.app/api/users/staff) | ✔ | **admin** |
+| **Get Specific User Data ('cust' can only see their own)** | `GET` | [/api/users/profile/{id}](https://w18sh-ry.up.railway.app/api/users/profile/1) | ✔ | **cust**, **staff**, **admin** |
+| **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w18sh-ry.up.railway.app/api/users/profile) | ✔ | **cust**, **staff**, **admin** |
+</div>
+
+### Contact Me:
+
+<img src="https://raw.githubusercontent.com/RevoU-FSSE-2/week-7-SherinOlivia/3dd7cdf0d5c9fc1828f0dfcac8ef2e9c057902be/assets/gmail-icon.svg" width="15px" background-color="none">[SOChronicle@gmail.com](mailto:SOChronicle@gmail.com) [Personal]
+
+<img src="https://raw.githubusercontent.com/RevoU-FSSE-2/week-7-SherinOlivia/3dd7cdf0d5c9fc1828f0dfcac8ef2e9c057902be/assets/gmail-icon.svg" width="15px" background-color="none">[SOlivia198@gmail.com](mailto:SOlivia198@gmail.com) [Work]
+
+[![Roo-Discord](https://raw.githubusercontent.com/RevoU-FSSE-2/week-5-SherinOlivia/bddf1eca3ee3ad82db2f228095d01912bf9c3de6/assets/MDimgs/icons8-discord.svg)](https://discord.com/users/shxdxr#7539)[![Roo-Instagram](https://raw.githubusercontent.com/RevoU-FSSE-2/week-5-SherinOlivia/bddf1eca3ee3ad82db2f228095d01912bf9c3de6/assets/MDimgs/icons8-instagram.svg)](https://instagram.com/shxdxr?igshid=MzRlODBiNWFlZA==)[![Roo-LinkedIn](https://raw.githubusercontent.com/RevoU-FSSE-2/week-5-SherinOlivia/bddf1eca3ee3ad82db2f228095d01912bf9c3de6/assets/MDimgs/icons8-linkedin-circled.svg)](https://www.linkedin.com/in/sherin-olivia-07311127a/)
