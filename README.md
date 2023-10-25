@@ -123,6 +123,17 @@ Update (parameter: userId):
 | **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w18sh-ry.up.railway.app/api/users/profile) | ✔ | **cust**, **staff**, **admin** |
 </div>
 
+## How to Run the App
+
+For testing purposes, please use `Postman` / `Thunder Client` VSCode extension.
+(postman collection available in root directory of the project)
+Otherwise:
+- git clone or download this repository to your machine
+- install the necessities: `pnpm i` / `npm i`
+- use the `.env.example` to create your own `.env` file (please contact me for my `.env` details)
+- `Admin` (aka `Super User`) is automatically generated through a function placed in `src/config/superAdminConfig`, please contact me if you want me to delete the `admin` data manually from database for any testing needs!
+
+
 ### Contact Me:
 
 <img src="https://raw.githubusercontent.com/RevoU-FSSE-2/week-7-SherinOlivia/3dd7cdf0d5c9fc1828f0dfcac8ef2e9c057902be/assets/gmail-icon.svg" width="15px" background-color="none">[SOChronicle@gmail.com](mailto:SOChronicle@gmail.com) [Personal]
