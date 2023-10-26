@@ -2,18 +2,22 @@ import { Request, Response } from 'express';
 import { DB } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import { RowDataPacket } from 'mysql2';
+import { parse, format } from 'date-fns';
 
 const createTask = async (req: Request, res: Response) => {
     const { id } = (req as any).user;
     const { title, description, purpose, due_date } =  req.body;
+    const parsedDate = parse(due_date, 'yyyy-MM-dd', new Date());
+    const formattedDate = format(parsedDate, 'EEEE, d MMMM yyyy');
 
+    console.log(formattedDate)
     try {
         const [existingTask] = await DB.promise().query(`SELECT * FROM railway.tasks WHERE title = ?`, [title]) as RowDataPacket[];
         
             if (existingTask.length === 0) {
                 const [newTask] = await DB.promise().query(
-                `INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?)`,
-                [id, title, description, purpose, due_date, '0']) as RowDataPacket[];
+                `INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`,
+                [id, title, description, purpose, formattedDate, '0']) as RowDataPacket[];
     
                 const getNewTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId]);
                 return res.status(200).json(errorHandling(getNewTask[0], null));
