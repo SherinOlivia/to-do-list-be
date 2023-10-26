@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const XOrigin = [
-    "http://localhost:5173", "https://w18sh-fe.roozone.site"
+    "http://localhost:5173", "https://w18sh-fe.roozone.site", "https://week-18-sherinolivia.web.app"
 ];
 const YOrigin = [
     "https://week-18-sherinolivia.firebaseapp.com"
