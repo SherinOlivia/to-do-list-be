@@ -118,6 +118,13 @@ Edit Task:
     "due_date": "yyyy-mm-dd format"
 }
 ```
+```JSON
+Update Task Completion:
+{
+    "completed": 1
+    // boolean: 0 for false, 1 for true
+}
+```
 <br>
 
 ## API Endpoints
@@ -151,11 +158,11 @@ Edit Task:
 | Name  | HTTP Method | Endpoint | Authentication | Authorization |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | **Homepage** | `GET` |[/](https://w18sh-ry.up.railway.app/) | ❌ | ❌ |
-| **Create New Taks** | `POST` | [/api/tasks/new](https://w18sh-ry.up.railway.app/api/tasks/new) | ✔ | ❌ |
+| **Create New Taks** | `POST` | [/api/tasks/new](https://w18sh-ry.up.railway.app/api/tasks/new) | ✔ | **client**, **staff**, **admin** |
 | **List All Tasks ('client' can only see their own)** | `GET` | [/api/tasks](https://w18sh-ry.up.railway.app/api/tasks) | ✔ | **client**, **staff**, **admin** |
 | **Edit Task** | `PUT` | [/api/tasks/edit/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/edit/2) | ✔ | **client**, **staff**, **admin** |
 | **Update Task Completion** | `PATCH` | [/api/tasks/update/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/update/2) | ✔ | **client**, **staff**, **admin** |
-| **Delete Task (Soft Delete)** | `DELETE` | [/tasks/delete/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/delete/1) | ✔ | **cust**, **staff**, **admin** |
+| **Delete Task (Soft Delete)** | `DELETE` | [/tasks/delete/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/delete/1) | ✔ | **client**, **staff**, **admin** |
 
 </div>
 
