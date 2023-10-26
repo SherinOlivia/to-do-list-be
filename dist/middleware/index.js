@@ -8,13 +8,13 @@ const expressMiddleware_1 = __importDefault(require("./expressMiddleware"));
 const helmetMiddleware_1 = __importDefault(require("./helmetMiddleware"));
 const requestMiddleware_1 = __importDefault(require("./requestMiddleware"));
 const morganMiddleware_1 = __importDefault(require("./morganMiddleware"));
-// import corsMiddleware from "./corsMiddleware";
+const corsMiddleware_1 = __importDefault(require("./corsMiddleware"));
 const appMiddleware = (app) => {
     (0, morganMiddleware_1.default)(app);
     app.use(requestMiddleware_1.default);
     (0, helmetMiddleware_1.default)(app);
     (0, expressMiddleware_1.default)(app);
     (0, cookieMiddleware_1.default)(app);
-    // corsMiddleware(app);
+    (0, corsMiddleware_1.default)(app);
 };
 exports.default = appMiddleware;

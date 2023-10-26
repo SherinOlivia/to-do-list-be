@@ -1,45 +1,45 @@
-// import cors, { CorsOptions } from "cors";
-// import { Application } from "express";
+import cors, { CorsOptions } from "cors";
+import { Application } from "express";
 
-// const XOrigin = [
-//   "http://localhost:5173","https://w18sh-fe.roozone.site"
-// ];
-// const YOrigin = [
-//   "https://week-18-sherinolivia.firebaseapp.com"
-// ];
+const XOrigin = [
+  "http://localhost:5173","https://w18sh-fe.roozone.site"
+];
+const YOrigin = [
+  "https://week-18-sherinolivia.firebaseapp.com"
+];
 
-// const corsOptionsDelegate = (req: any, 
-//     callback: (err: Error | null, options?: CorsOptions) => void) => {
-//   const clientXOrigin = XOrigin.includes(req.header("Origin"));
-//   const clientYOrigin = YOrigin.includes(req.header("Origin"));
-//   const requestOrigin = req.header("Origin");
-//   console.log("Request Origin: ", requestOrigin);
+const corsOptionsDelegate = (req: any, 
+    callback: (err: Error | null, options?: CorsOptions) => void) => {
+  const clientXOrigin = XOrigin.includes(req.header("Origin"));
+  const clientYOrigin = YOrigin.includes(req.header("Origin"));
+  const requestOrigin = req.header("Origin");
+  console.log("Request Origin: ", requestOrigin);
   
-//   try {
+  try {
     
-//     if (clientXOrigin) {
-//       callback(null, {
-//         origin: true,
-//         methods: "GET, POST, PUT, PATCH, DELETE",
-//         credentials: true,
-//       });
+    if (clientXOrigin) {
+      callback(null, {
+        origin: true,
+        methods: "GET, POST, PUT, PATCH, DELETE",
+        credentials: true,
+      });
       
-//     } else if (clientYOrigin) {
-//       callback(null, {
-//         origin: true,
-//         methods: "GET, POST",
-//         credentials: true,
-//       });
-//     } else {
-//       callback(new Error("CORS Unauthorized Access..!"))
-//     }
-//   } catch (error) {
-//     console.error("Error..:", error)
-//   }
-// };
+    } else if (clientYOrigin) {
+      callback(null, {
+        origin: true,
+        methods: "GET, POST",
+        credentials: true,
+      });
+    } else {
+      callback(new Error("CORS Unauthorized Access..!"))
+    }
+  } catch (error) {
+    console.error("Error..:", error)
+  }
+};
 
-// const corsMiddleware = (app: Application) => {
-//   app.use(cors(corsOptionsDelegate));
-// };
+const corsMiddleware = (app: Application) => {
+  app.use(cors(corsOptionsDelegate));
+};
 
-// export default corsMiddleware;
+export default corsMiddleware;
