@@ -17,10 +17,14 @@ const createTask = async (req: Request, res: Response) => {
             if (existingTask.length === 0) {
                 const [newTask] = await DB.promise().query(
                 `INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`,
-                [id, title, description, purpose, formattedDate, '0']) as RowDataPacket[];
+                [id, title, description, purpose, due_date, '0']) as RowDataPacket[];
     
-                const getNewTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId]);
-                return res.status(200).json(errorHandling(getNewTask[0], null));
+                const getNewTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId])  as RowDataPacket[];
+                const taskWithFormattedDate = {
+                    ...getNewTask[0][0],
+                    due_date: formattedDate,
+                };
+                return res.status(200).json(errorHandling(taskWithFormattedDate, null));
             } else {
                 return res.status(400).json(errorHandling(null, `Task with ${title} title already exist...!!`));
             }

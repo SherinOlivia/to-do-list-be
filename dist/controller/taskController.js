@@ -22,9 +22,10 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const [existingTask] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE title = ?`, [title]);
         if (existingTask.length === 0) {
-            const [newTask] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`, [id, title, description, purpose, formattedDate, '0']);
+            const [newTask] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`, [id, title, description, purpose, due_date, '0']);
             const getNewTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId]);
-            return res.status(200).json((0, errorHandling_1.errorHandling)(getNewTask[0], null));
+            const taskWithFormattedDate = Object.assign(Object.assign({}, getNewTask[0][0]), { due_date: formattedDate });
+            return res.status(200).json((0, errorHandling_1.errorHandling)(taskWithFormattedDate, null));
         }
         else {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, `Task with ${title} title already exist...!!`));
