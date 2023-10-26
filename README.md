@@ -124,7 +124,7 @@ Update (parameter: userId):
 </div>
 
 ## How to Run the App
-
+u
 For testing purposes, please use `Postman` / `Thunder Client` VSCode extension.
 (postman collection available in root directory of the project)
 Otherwise:

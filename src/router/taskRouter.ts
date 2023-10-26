@@ -1,0 +1,18 @@
+import express from 'express'
+import { createTask, getAllTasks, editTask, updateTaskStatus, deleteTask } from '.././controller';
+import authorMiddleware from '../middleware/authorizationMiddleware'
+
+const taskrouter = express.Router()
+
+taskrouter.post('/new', createTask);
+
+taskrouter.put('/edit/:taskId', authorMiddleware(['client','staff','admin']), editTask);
+
+taskrouter.patch('/update/:taskId', authorMiddleware(['staff','admin']), updateTaskStatus);
+
+taskrouter.delete('/delete/:taskId', authorMiddleware(['client','staff','admin']), deleteTask);
+
+// Client can only see theirs
+taskrouter.get('/', authorMiddleware(['client','staff','admin']), getAllTasks);
+
+export default taskrouter

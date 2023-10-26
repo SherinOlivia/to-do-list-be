@@ -1,8 +1,7 @@
 import express, { Request, Response } from 'express';
 import authenMiddleware from '../middleware/authenticationMiddleware';
-// import todorouter from './taskRouter';
 import userrouter from './userRouter';
-
+import taskrouter from './taskRouter';
 
 const router = express.Router();
 
@@ -13,7 +12,7 @@ router.get("/", function (req: Request, res: Response) {
     })
 })
 
-// router.use('/api/tasks', authenMiddleware, taskrouter)
 router.use('/api/users', userrouter)
+router.use('/api/tasks', authenMiddleware, taskrouter)
 
 export default router;
