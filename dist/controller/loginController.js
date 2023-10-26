@@ -75,7 +75,6 @@ exports.loginUser = loginUser;
 const logoutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.clearCookie('access_token');
     res.clearCookie('refresh_token');
-    res.json();
     return res.status(200).json((0, errorHandling_1.errorHandling)("See you next time!", null));
 });
 exports.logoutUser = logoutUser;
