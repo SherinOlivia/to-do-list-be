@@ -75,6 +75,7 @@ const logoutUser = async (req: Request, res: Response) => {
     res.clearCookie('access_token');
     res.clearCookie('refresh_token');
     res.json();
+    return res.status(200).json(errorHandling("See you next time!", null));
   };
 
   export { loginUser, logoutUser }
