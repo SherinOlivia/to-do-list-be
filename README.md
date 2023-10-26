@@ -98,6 +98,28 @@ Update (parameter: userId):
 ```
 <br>
 
+
+**TASKS:**
+```JSON
+Create New Task:
+{
+    "title": "Task Title",
+    "description": "Task Description",
+    "purpose": "Task Purpose (work/personal/finance/misc)",
+    "due_date": "yyyy-mm-dd format"
+}
+```
+```JSON
+Edit Task:
+{
+    "title": "New? Task Title",
+    "description": "New? Task Description",
+    "purpose": "Task Purpose (work/personal/finance/misc)",
+    "due_date": "yyyy-mm-dd format"
+}
+```
+<br>
+
 ## API Endpoints
 <p align="center">
 <a href="https://w18sh-ry.up.railway.app/">w18sh-ry.up.railway.app</a>
@@ -121,6 +143,20 @@ Update (parameter: userId):
 | **List All Staff Data** | `GET` | [/api/users/staff](https://w18sh-ry.up.railway.app/api/users/staff) | ✔ | **admin** |
 | **Get Specific User Data ('cust' can only see their own)** | `GET` | [/api/users/profile/{id}](https://w18sh-ry.up.railway.app/api/users/profile/1) | ✔ | **cust**, **staff**, **admin** |
 | **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w18sh-ry.up.railway.app/api/users/profile) | ✔ | **cust**, **staff**, **admin** |
+</div>
+
+**TASKS**
+<div align="center">
+
+| Name  | HTTP Method | Endpoint | Authentication | Authorization |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| **Homepage** | `GET` |[/](https://w18sh-ry.up.railway.app/) | ❌ | ❌ |
+| **Create New Taks** | `POST` | [/api/tasks/new](https://w18sh-ry.up.railway.app/api/tasks/new) | ✔ | ❌ |
+| **List All Tasks ('client' can only see their own)** | `GET` | [/api/tasks](https://w18sh-ry.up.railway.app/api/tasks) | ✔ | **client**, **staff**, **admin** |
+| **Edit Task** | `PUT` | [/api/tasks/edit/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/edit/2) | ✔ | **client**, **staff**, **admin** |
+| **Update Task Completion** | `PATCH` | [/api/tasks/update/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/update/2) | ✔ | **client**, **staff**, **admin** |
+| **Delete Task (Soft Delete)** | `DELETE` | [/tasks/delete/{taskId}](https://w18sh-ry.up.railway.app/api/tasks/delete/1) | ✔ | **cust**, **staff**, **admin** |
+
 </div>
 
 ## How to Run the App

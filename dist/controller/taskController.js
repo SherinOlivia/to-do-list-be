@@ -86,10 +86,11 @@ exports.editTask = editTask;
 const updateTaskStatus = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const taskId = req.params.taskId;
     const { id } = req.user;
+    const { completed } = req.body;
     try {
         const [existingTask] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ? AND isDeleted = ?`, [taskId, '0']);
         if (existingTask.length !== 0) {
-            yield dbConnection_1.DB.promise().query(`UPDATE railway.tasks SET completed = ? WHERE id = ? AND userId = ? AND isDeleted = ?`, ['1', taskId, id, '0']);
+            yield dbConnection_1.DB.promise().query(`UPDATE railway.tasks SET completed = ? WHERE id = ? AND userId = ? AND isDeleted = ?`, [completed, taskId, id, '0']);
             const getUpdatedTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [taskId]);
             return res.status(200).json((0, errorHandling_1.errorHandling)({ message: "Task Successfully Completed!", data: getUpdatedTask[0] }, null));
         }

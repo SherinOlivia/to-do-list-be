@@ -82,13 +82,14 @@ const editTask = async (req: Request, res: Response) => {
 const updateTaskStatus = async (req: Request, res: Response) => {
     const taskId = req.params.taskId
     const { id } = (req as any).user
+    const { completed } = req.body
 
     try {
         const [existingTask] = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ? AND isDeleted = ?`, [taskId, '0']) as RowDataPacket[];
 
         if (existingTask.length !== 0) {
             await DB.promise().query(`UPDATE railway.tasks SET completed = ? WHERE id = ? AND userId = ? AND isDeleted = ?`,
-            ['1', taskId, id, '0']) as RowDataPacket[];
+            [completed, taskId, id, '0']) as RowDataPacket[];
 
             const getUpdatedTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [taskId]);
             return res.status(200).json(errorHandling({message: "Task Successfully Completed!", data: getUpdatedTask[0]}, null));
