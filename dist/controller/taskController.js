@@ -69,9 +69,9 @@ const editTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const [existingTask] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ? AND isDeleted = ?`, [taskId, '0']);
         if (existingTask.length !== 0) {
-            const [updateTask] = yield dbConnection_1.DB.promise().query(`UPDATE railway.tasks SET title = ?, description = ?, purpose = ?, due_date = ? WHERE id = ? AND userId = ? AND isDeleted = ?`, [title, description, purpose, due_date, taskId, id, '0']);
-            const getUpdatedTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [updateTask.insertId]);
-            return res.status(200).json((0, errorHandling_1.errorHandling)(getUpdatedTask[0], null));
+            yield dbConnection_1.DB.promise().query(`UPDATE railway.tasks SET title = ?, description = ?, purpose = ?, due_date = ? WHERE id = ? AND userId = ? AND isDeleted = ?`, [title, description, purpose, due_date, taskId, id, '0']);
+            const getUpdatedTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [taskId]);
+            return res.status(200).json((0, errorHandling_1.errorHandling)({ message: "Task Successfully Updated!", data: getUpdatedTask[0] }, null));
         }
         else {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, `Task with ${title} title doesn't exist...!!`));
@@ -89,9 +89,9 @@ const updateTaskStatus = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const [existingTask] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ? AND isDeleted = ?`, [taskId, '0']);
         if (existingTask.length !== 0) {
-            const [updateStatus] = yield dbConnection_1.DB.promise().query(`UPDATE railway.tasks SET completed = ? WHERE id = ? AND userId = ? AND isDeleted = ?`, ['1', taskId, id, '0']);
-            const getUpdatedTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [updateStatus.insertId]);
-            return res.status(200).json((0, errorHandling_1.errorHandling)(getUpdatedTask[0], null));
+            yield dbConnection_1.DB.promise().query(`UPDATE railway.tasks SET completed = ? WHERE id = ? AND userId = ? AND isDeleted = ?`, ['1', taskId, id, '0']);
+            const getUpdatedTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [taskId]);
+            return res.status(200).json((0, errorHandling_1.errorHandling)({ message: "Task Successfully Completed!", data: getUpdatedTask[0] }, null));
         }
         else {
             return res.status(400).json((0, errorHandling_1.errorHandling)(null, `Task doesn't exist...!!`));
