@@ -69,7 +69,7 @@ const editTask = async (req: Request, res: Response) => {
             `UPDATE railway.tasks SET title = ?, description = ?, purpose = ?, due_date = ? WHERE id = ? AND userId = ? AND isDeleted = ?`,
             [title, description, purpose, due_date, taskId, id, '0']) as RowDataPacket[];
 
-            const getUpdatedTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [updateTask.insertId]);
+            const getUpdatedTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [updateTask.insertId])  as RowDataPacket[];
             return res.status(200).json(errorHandling(getUpdatedTask[0], null));
         } else {
             return res.status(400).json(errorHandling(null, `Task with ${title} title doesn't exist...!!`));
