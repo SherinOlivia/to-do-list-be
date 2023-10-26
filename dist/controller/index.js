@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.userProfile = exports.getOneUser = exports.getAllClient = exports.getAllStaff = exports.resetPassword = exports.resetPasswordRequest = exports.refreshTokenRequest = exports.logoutUser = exports.loginUser = exports.registerUserByAdmin = exports.registerUser = void 0;
+exports.deleteTask = exports.updateTaskStatus = exports.editTask = exports.getAllTasks = exports.createTask = exports.updateUser = exports.userProfile = exports.getOneUser = exports.getAllClient = exports.getAllStaff = exports.resetPassword = exports.resetPasswordRequest = exports.refreshTokenRequest = exports.logoutUser = exports.loginUser = exports.registerUserByAdmin = exports.registerUser = void 0;
 var registerController_1 = require("./registerController");
 Object.defineProperty(exports, "registerUser", { enumerable: true, get: function () { return registerController_1.registerUser; } });
 Object.defineProperty(exports, "registerUserByAdmin", { enumerable: true, get: function () { return registerController_1.registerUserByAdmin; } });
@@ -18,3 +18,9 @@ Object.defineProperty(exports, "getAllClient", { enumerable: true, get: function
 Object.defineProperty(exports, "getOneUser", { enumerable: true, get: function () { return userController_1.getOneUser; } });
 Object.defineProperty(exports, "userProfile", { enumerable: true, get: function () { return userController_1.userProfile; } });
 Object.defineProperty(exports, "updateUser", { enumerable: true, get: function () { return userController_1.updateUser; } });
+var taskController_1 = require("./taskController");
+Object.defineProperty(exports, "createTask", { enumerable: true, get: function () { return taskController_1.createTask; } });
+Object.defineProperty(exports, "getAllTasks", { enumerable: true, get: function () { return taskController_1.getAllTasks; } });
+Object.defineProperty(exports, "editTask", { enumerable: true, get: function () { return taskController_1.editTask; } });
+Object.defineProperty(exports, "updateTaskStatus", { enumerable: true, get: function () { return taskController_1.updateTaskStatus; } });
+Object.defineProperty(exports, "deleteTask", { enumerable: true, get: function () { return taskController_1.deleteTask; } });
