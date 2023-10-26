@@ -145,11 +145,11 @@ Update Task Completion:
 | **Request Password Reset** | `POST` | [/api/users/resetpassword/request](https://w18sh-ry.up.railway.app/api/users/resetpassword/request) | ✔ | ❌ |
 | **Password Reset** | `POST` | [/api/users/resetpassword](https://w18sh-ry.up.railway.app/api/users/resetpassword) | ✔ | ❌ |
 | **Request Refresh Token** | `POST` | [/api/users/refresh](https://w18sh-ry.up.railway.app/api/users/refresh) | ✔ | ❌ |
-| **Update Name, City, & About Me** | `PATCH` | [/api/users/update/{id}](https://w18sh-ry.up.railway.app/api/users/update/3) | ✔ | **cust**, **staff**, **admin** |
+| **Update Name, City, & About Me** | `PATCH` | [/api/users/update/{id}](https://w18sh-ry.up.railway.app/api/users/update/3) | ✔ | **client**, **staff**, **admin** |
 | **List All Client Data** | `GET` | [/api/users/clients](https://w18sh-ry.up.railway.app/api/users/clients) | ✔ | **staff**, **admin** |
 | **List All Staff Data** | `GET` | [/api/users/staff](https://w18sh-ry.up.railway.app/api/users/staff) | ✔ | **admin** |
-| **Get Specific User Data ('cust' can only see their own)** | `GET` | [/api/users/profile/{id}](https://w18sh-ry.up.railway.app/api/users/profile/1) | ✔ | **cust**, **staff**, **admin** |
-| **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w18sh-ry.up.railway.app/api/users/profile) | ✔ | **cust**, **staff**, **admin** |
+| **Get Specific User Data ('client' can only see their own)** | `GET` | [/api/users/profile/{id}](https://w18sh-ry.up.railway.app/api/users/profile/1) | ✔ | **client**, **staff**, **admin** |
+| **User Profile (each user sees their own)** | `GET` | [/api/users/profile](https://w18sh-ry.up.railway.app/api/users/profile) | ✔ | **client**, **staff**, **admin** |
 </div>
 
 **TASKS**
