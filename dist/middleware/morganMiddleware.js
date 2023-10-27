@@ -8,3 +8,4 @@ const morganMiddleware = (app) => {
     app.use((0, morgan_1.default)("dev"));
 };
 exports.default = morganMiddleware;
+//# sourceMappingURL=morganMiddleware.js.map

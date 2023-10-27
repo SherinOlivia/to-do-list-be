@@ -36,3 +36,4 @@ const insertAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.default = insertAdmin;
+//# sourceMappingURL=superAdminConfig.js.map

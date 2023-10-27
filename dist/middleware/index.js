@@ -18,3 +18,4 @@ const appMiddleware = (app) => {
     (0, corsMiddleware_1.default)(app);
 };
 exports.default = appMiddleware;
+//# sourceMappingURL=index.js.map

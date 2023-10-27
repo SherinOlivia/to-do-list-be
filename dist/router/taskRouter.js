@@ -14,3 +14,4 @@ taskrouter.delete('/delete/:taskId', (0, authorizationMiddleware_1.default)(['cl
 // Client can only see theirs
 taskrouter.get('/', (0, authorizationMiddleware_1.default)(['client', 'staff', 'admin']), controller_1.getAllTasks);
 exports.default = taskrouter;
+//# sourceMappingURL=taskRouter.js.map
