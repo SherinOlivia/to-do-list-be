@@ -25,3 +25,4 @@ userrouter.patch('/update/:id', authenticationMiddleware_1.default, (0, authoriz
 userrouter.get('/clients', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['staff', 'admin']), controller_5.getAllClient);
 userrouter.get('/staff', authenticationMiddleware_1.default, (0, authorizationMiddleware_1.default)(['admin']), controller_5.getAllStaff);
 exports.default = userrouter;
+//# sourceMappingURL=userRouter.js.map

@@ -6,3 +6,4 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     res.status(err.status || 500).json(errorResponse);
 };
 exports.default = errorHandlerMiddleware;
+//# sourceMappingURL=errorHandlingMiddleware.js.map

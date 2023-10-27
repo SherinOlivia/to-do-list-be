@@ -7,8 +7,16 @@ const helmet_1 = __importDefault(require("helmet"));
 const helmetMiddleware = (app) => {
     app.use((0, helmet_1.default)());
     app.use((0, helmet_1.default)({
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                // Add other CSP directives as needed
+            }
+        },
         xFrameOptions: { action: "deny" },
+        referrerPolicy: { policy: 'same-origin' },
         crossOriginEmbedderPolicy: true,
     }));
 };
 exports.default = helmetMiddleware;
+//# sourceMappingURL=helmetMiddleware.js.map

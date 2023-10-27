@@ -42,3 +42,4 @@ const corsMiddleware = (app) => {
     app.use((0, cors_1.default)(corsOptionsDelegate));
 };
 exports.default = corsMiddleware;
+//# sourceMappingURL=corsMiddleware.js.map

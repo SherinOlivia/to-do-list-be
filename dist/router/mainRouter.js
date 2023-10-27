@@ -17,3 +17,4 @@ router.get("/", function (req, res) {
 router.use('/api/users', userRouter_1.default);
 router.use('/api/tasks', authenticationMiddleware_1.default, taskRouter_1.default);
 exports.default = router;
+//# sourceMappingURL=mainRouter.js.map

@@ -78,3 +78,4 @@ const logoutUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     return res.status(200).json((0, errorHandling_1.errorHandling)("See you next time!", null));
 });
 exports.logoutUser = logoutUser;
+//# sourceMappingURL=loginController.js.map

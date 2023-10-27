@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("dotenv/config");
-// import { DB } from './config/dbConnection';
+const dbConnection_1 = require("./config/dbConnection");
 const superAdminConfig_1 = __importDefault(require("./config/superAdminConfig"));
 const mainRouter_1 = __importDefault(require("./router/mainRouter"));
 const middleware_1 = __importDefault(require("./middleware"));
@@ -14,26 +14,29 @@ const escape_html_1 = __importDefault(require("escape-html"));
 // import http, { Server } from 'http'
 const app = (0, express_1.default)();
 const port = process.env.PORT;
+// const server: Server = http.createServer(app)
+// let PORT: number;
 // middleware
 (0, middleware_1.default)(app);
 // // DB Connection (Railway)
-// DB.connect( function () {
-//     if (DB) {
-//         console.log("Railway Connection Succeed");
-//     } else {
-//         console.log("Railway Connection Failed");
-//     }
-// }),
-// DB Connection (Local)
-// DBLocal.connect( function () {
-//     if (DBLocal) {
-//         console.log("Localhost Connection Succeed");
-//     } else {
-//         console.log("Localhost Connection Failed");
-//     }
-// })
-// insert Super User / Admin account to Database.. (One time Use)
-(0, superAdminConfig_1.default)();
+dbConnection_1.DB.connect(function () {
+    if (dbConnection_1.DB) {
+        console.log("Railway Connection Succeed");
+    }
+    else {
+        console.log("Railway Connection Failed");
+    }
+}),
+    // DB Connection (Local)
+    // DBLocal.connect( function () {
+    //     if (DBLocal) {
+    //         console.log("Localhost Connection Succeed");
+    //     } else {
+    //         console.log("Localhost Connection Failed");
+    //     }
+    // })
+    // insert Super User / Admin account to Database.. (One time Use)
+    (0, superAdminConfig_1.default)();
 // router
 app.use(mainRouter_1.default);
 app.get('/', (req, res) => {
@@ -54,3 +57,5 @@ app.listen(port, () => {
 //         console.error("Server address is not available.")
 //     }
 // })
+// export const week18shbe = functions.https.onRequest(app)
+//# sourceMappingURL=index.js.map

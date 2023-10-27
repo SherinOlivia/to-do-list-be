@@ -8,3 +8,4 @@ const cookieMiddleware = (app) => {
     app.use((0, cookie_parser_1.default)());
 };
 exports.default = cookieMiddleware;
+//# sourceMappingURL=cookieMiddleware.js.map

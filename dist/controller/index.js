@@ -24,3 +24,4 @@ Object.defineProperty(exports, "getAllTasks", { enumerable: true, get: function 
 Object.defineProperty(exports, "editTask", { enumerable: true, get: function () { return taskController_1.editTask; } });
 Object.defineProperty(exports, "updateTaskStatus", { enumerable: true, get: function () { return taskController_1.updateTaskStatus; } });
 Object.defineProperty(exports, "deleteTask", { enumerable: true, get: function () { return taskController_1.deleteTask; } });
+//# sourceMappingURL=index.js.map

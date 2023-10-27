@@ -28,3 +28,4 @@ const authenMiddleware = (req, res, next) => {
     // }
 };
 exports.default = authenMiddleware;
+//# sourceMappingURL=authenticationMiddleware.js.map

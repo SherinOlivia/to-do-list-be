@@ -18,3 +18,4 @@ exports.DBConfigLocal = {
     PASSWORD: process.env.SQL_PASSWORDLOCAL,
     DATABASE: process.env.SQL_DATABASELOCAL,
 };
+//# sourceMappingURL=dbConfig.js.map

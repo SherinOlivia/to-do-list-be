@@ -62,3 +62,4 @@ const registerUserByAdmin = (req, res) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.registerUserByAdmin = registerUserByAdmin;
+//# sourceMappingURL=registerController.js.map

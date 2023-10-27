@@ -7,3 +7,4 @@ const authorMiddleware = (roles) => (req, res, next) => {
     next();
 };
 exports.default = authorMiddleware;
+//# sourceMappingURL=authorizationMiddleware.js.map

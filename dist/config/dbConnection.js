@@ -45,3 +45,4 @@ exports.DB = mysql.createConnection({
 //     password: DBConfigLocal.PASSWORD,
 //     database: DBConfigLocal.DATABASE,
 // })
+//# sourceMappingURL=dbConnection.js.map
