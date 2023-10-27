@@ -1,6 +1,6 @@
 import express, {Express} from 'express';
 import 'dotenv/config';
-import { DB } from './config/dbConnection';
+// import { DB } from './config/dbConnection';
 import insertAdmin from './config/superAdminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
@@ -11,20 +11,18 @@ import escapeHtml from 'escape-html';
 
 const app: Express = express()
 const port = process.env.PORT;
-// const server: Server = http.createServer(app)
-// let PORT: number;
 
 // middleware
 appMiddleware(app)
 
-// DB Connection (Railway)
-DB.connect( function () {
-    if (DB) {
-        console.log("Railway Connection Succeed");
-    } else {
-        console.log("Railway Connection Failed");
-    }
-}),
+// // DB Connection (Railway)
+// DB.connect( function () {
+//     if (DB) {
+//         console.log("Railway Connection Succeed");
+//     } else {
+//         console.log("Railway Connection Failed");
+//     }
+// }),
 
 // DB Connection (Local)
 // DBLocal.connect( function () {
