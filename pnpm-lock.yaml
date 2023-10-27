@@ -20,6 +20,9 @@ dependencies:
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
+  escape-html:
+    specifier: ^1.0.3
+    version: 1.0.3
   express:
     specifier: ^4.18.2
     version: 4.18.2
@@ -52,6 +55,9 @@ devDependencies:
   '@types/cors':
     specifier: ^2.8.15
     version: 2.8.15
+  '@types/escape-html':
+    specifier: ^1.0.3
+    version: 1.0.3
   '@types/express':
     specifier: ^4.17.20
     version: 4.17.20
@@ -174,6 +180,10 @@ packages:
     resolution: {integrity: sha512-n91JxbNLD8eQIuXDIChAN1tCKNWCEgpceU9b7ZMbFA+P+Q4yIeh80jizFLEvolRPc1ES0VdwFlGv+kJTSirogw==}
     dependencies:
       '@types/node': 20.8.7
+    dev: true
+
+  /@types/escape-html@1.0.3:
+    resolution: {integrity: sha512-QbNxKa2IX2y/9eGiy4w8rrwk//ERHXA6zwYVRA3+ayA/D3pkz+/bLL4b5uSLA0L0kPuNX1Jbv9HyPzv9T4zbJQ==}
     dev: true
 
   /@types/express-serve-static-core@4.17.39:

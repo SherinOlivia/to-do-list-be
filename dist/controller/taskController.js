@@ -16,20 +16,14 @@ const date_fns_1 = require("date-fns");
 const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.user;
     const { title, description, purpose, due_date } = req.body;
-    const parsedDate = (0, date_fns_1.parse)(due_date, 'yyyy-MM-dd', new Date());
-    const formattedDate = (0, date_fns_1.format)(parsedDate, 'EEEE, d MMMM yyyy');
-    console.log(formattedDate);
+    const date = new Date(due_date);
+    const formattedDBDate = (0, date_fns_1.format)(date, 'yyyy-MM-dd');
+    const formattedDate = (0, date_fns_1.format)(date, 'EEEE, d MMMM yyyy');
     try {
-        const [existingTask] = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE title = ?`, [title]);
-        if (existingTask.length === 0) {
-            const [newTask] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`, [id, title, description, purpose, due_date, '0']);
-            const getNewTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId]);
-            const taskWithFormattedDate = Object.assign(Object.assign({}, getNewTask[0][0]), { due_date: formattedDate });
-            return res.status(200).json((0, errorHandling_1.errorHandling)(taskWithFormattedDate, null));
-        }
-        else {
-            return res.status(400).json((0, errorHandling_1.errorHandling)(null, `Task with ${title} title already exist...!!`));
-        }
+        const [newTask] = yield dbConnection_1.DB.promise().query(`INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`, [id, title, description, purpose, formattedDBDate, '0']);
+        const getNewTask = yield dbConnection_1.DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId]);
+        const taskWithFormattedDate = Object.assign(Object.assign({}, getNewTask[0][0]), { due_date: formattedDate });
+        return res.status(200).json((0, errorHandling_1.errorHandling)(taskWithFormattedDate, null));
     }
     catch (error) {
         console.error(error);

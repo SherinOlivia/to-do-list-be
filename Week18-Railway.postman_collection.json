@@ -381,6 +381,164 @@
 			]
 		},
 		{
+			"name": "tasks",
+			"item": [
+				{
+					"name": "GET: Get All Tasks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://w18sh-ry.up.railway.app/api/tasks",
+							"protocol": "https",
+							"host": [
+								"w18sh-ry",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST: Create New Task",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"BE Postman Test\",\r\n    \"description\": \"testing tasks router\",\r\n    \"purpose\": \"personal\",\r\n    \"due_date\": \"2023-10-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://w18sh-ry.up.railway.app/api/tasks/new",
+							"protocol": "https",
+							"host": [
+								"w18sh-ry",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT: Edit Task",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"BE Postman Test\",\r\n    \"description\": \"testing tasks router\",\r\n    \"purpose\": \"personal\",\r\n    \"due_date\": \"2023-10-26\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://w18sh-ry.up.railway.app/api/tasks/edit/1",
+							"protocol": "https",
+							"host": [
+								"w18sh-ry",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH: Update Task Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"completed\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://w18sh-ry.up.railway.app/api/tasks/update/1",
+							"protocol": "https",
+							"host": [
+								"w18sh-ry",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"update",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE: Delete Task",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"dreya321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://w18sh-ry.up.railway.app/api/tasks/delete/1",
+							"protocol": "https",
+							"host": [
+								"w18sh-ry",
+								"up",
+								"railway",
+								"app"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Homepage/Landing Page",
 			"request": {
 				"method": "GET",

@@ -32,7 +32,11 @@ exports.DB = mysql.createConnection({
     user: dbConfig_1.DBConfig.USER,
     password: dbConfig_1.DBConfig.PASSWORD,
     database: dbConfig_1.DBConfig.DATABASE,
-    port: +dbConfig_1.DBConfig.PORT
+    port: +dbConfig_1.DBConfig.PORT,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+    multipleStatements: true,
 });
 // local
 // export const DBLocal = mysql.createConnection({

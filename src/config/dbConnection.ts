@@ -7,7 +7,11 @@ export const DB = mysql.createConnection({
     user: DBConfig.USER,
     password: DBConfig.PASSWORD,
     database: DBConfig.DATABASE,
-    port: +DBConfig.PORT!
+    port: +DBConfig.PORT!,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0,
+    multipleStatements: true,
 })
 
 // local

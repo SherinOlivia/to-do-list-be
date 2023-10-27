@@ -4,6 +4,7 @@ import { DB } from './config/dbConnection';
 import insertAdmin from './config/superAdminConfig';
 import router from './router/mainRouter';
 import appMiddleware from './middleware';
+import escapeHtml from 'escape-html';
 
 // import * as functions from 'firebase-functions';
 // import http, { Server } from 'http'
@@ -40,6 +41,13 @@ insertAdmin();
 // router
 app.use(router)
 
+app.get('/', (req, res) => {
+    const htmlScript = '<script>alert("Caed mil");</script>';
+    const escapeHtmlUse = escapeHtml(htmlScript);
+    res.send(`<div>${escapeHtmlUse}</div>`);
+    console.log(escapeHtmlUse)
+    })
+    
 app.listen(port, () => {
     console.log(`Server is running on port:${port}`)
   })

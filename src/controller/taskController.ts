@@ -2,36 +2,33 @@ import { Request, Response } from 'express';
 import { DB } from '../config/dbConnection';
 import { errorHandling } from './errorHandling';
 import { RowDataPacket } from 'mysql2';
-import { parse, format } from 'date-fns';
+import { format } from 'date-fns';
 
 const createTask = async (req: Request, res: Response) => {
     const { id } = (req as any).user;
     const { title, description, purpose, due_date } =  req.body;
-    const parsedDate = parse(due_date, 'yyyy-MM-dd', new Date());
-    const formattedDate = format(parsedDate, 'EEEE, d MMMM yyyy');
+    const date = new Date(due_date);
+    const formattedDBDate = format(date, 'yyyy-MM-dd')
+    const formattedDate = format(date, 'EEEE, d MMMM yyyy');
 
-    console.log(formattedDate)
     try {
-        const [existingTask] = await DB.promise().query(`SELECT * FROM railway.tasks WHERE title = ?`, [title]) as RowDataPacket[];
-        
-            if (existingTask.length === 0) {
-                const [newTask] = await DB.promise().query(
-                `INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`,
-                [id, title, description, purpose, due_date, '0']) as RowDataPacket[];
+        const [newTask] = await DB.promise().query(
+            `INSERT INTO railway.tasks (userId, title, description, purpose, due_date, isDeleted) VALUES (?, ?, ?, ?, ?, ?)`,
+            [id, title, description, purpose, formattedDBDate, '0']
+        ) as RowDataPacket[];
     
-                const getNewTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId])  as RowDataPacket[];
-                const taskWithFormattedDate = {
-                    ...getNewTask[0][0],
-                    due_date: formattedDate,
-                };
-                return res.status(200).json(errorHandling(taskWithFormattedDate, null));
-            } else {
-                return res.status(400).json(errorHandling(null, `Task with ${title} title already exist...!!`));
-            }
+        const getNewTask = await DB.promise().query(`SELECT * FROM railway.tasks WHERE id = ?`, [newTask.insertId])  as RowDataPacket[];
+        const taskWithFormattedDate = {
+            ...getNewTask[0][0],
+            due_date: formattedDate,
+        };
+    
+        return res.status(200).json(errorHandling(taskWithFormattedDate, null));
     } catch (error) {
-        console.error(error)
+        console.error(error);
         return res.status(500).json(errorHandling(null, "Failed to create new task..!! Internal Error!"));
     }
+    
 }
 
 const getAllTasks = async (req: Request, res: Response) => {
