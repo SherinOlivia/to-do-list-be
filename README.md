@@ -25,10 +25,20 @@ The capabilities of the project are:
 - **MySQL** for the database service
 - **Railway** as the online database service
 
+
+## Front End Deployed Link & Repo
+<p align="center">
+<a href="https://github.com/SherinOlivia/to-do-list-app">FE Repository</a>
+</p> 
+<p align="center">
+<a href="https://week18sh.web.app/">week18sh.web.app (deployed link)</a>
+</p> 
+
 ## API Endpoints
 
 <p align="center">
-<a href="https://w18sh-ry.up.railway.app/">w18sh-ry.up.railway.app</a>
+<a href="https://w18sh-ry.up.railway.app/">w18sh-ry.up.railway.app</a> || 
+<a href="https://w18shbe.azurewebsites.net/">w18shbe.azurewebsites.net (linked to FE)</a>
 </p> 
 
 ## Sample Accounts
