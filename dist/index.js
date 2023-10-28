@@ -13,7 +13,7 @@ const escape_html_1 = __importDefault(require("escape-html"));
 // import * as functions from 'firebase-functions';
 // import http, { Server } from 'http'
 const app = (0, express_1.default)();
-const port = process.env.PORT;
+const port = process.env.PORT || 6060;
 // const server: Server = http.createServer(app)
 // let PORT: number;
 // middleware

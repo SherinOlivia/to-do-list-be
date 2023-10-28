@@ -9,7 +9,7 @@ import escapeHtml from 'escape-html';
 // import http, { Server } from 'http'
 
 const app: Express = express()
-const port = process.env.PORT;
+const port = process.env.PORT || 6060;
 
 // const server: Server = http.createServer(app)
 // let PORT: number;
