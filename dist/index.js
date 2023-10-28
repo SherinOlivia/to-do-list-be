@@ -39,6 +39,9 @@ dbConnection_1.DB.connect(function () {
     (0, superAdminConfig_1.default)();
 // router
 app.use(mainRouter_1.default);
+// Set HTTP keep-alive settings
+app.set('keepAliveInitialDelay', 10000);
+app.set('enableKeepAlive', true);
 app.get('/', (req, res) => {
     const htmlScript = '<script>alert("Caed mil");</script>';
     const escapeHtmlUse = (0, escape_html_1.default)(htmlScript);

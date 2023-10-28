@@ -41,6 +41,10 @@ insertAdmin();
 // router
 app.use(router)
 
+// Set HTTP keep-alive settings
+app.set('keepAliveInitialDelay', 10000);
+app.set('enableKeepAlive', true);
+
 app.get('/', (req, res) => {
     const htmlScript = '<script>alert("Caed mil");</script>';
     const escapeHtmlUse = escapeHtml(htmlScript);
@@ -48,7 +52,7 @@ app.get('/', (req, res) => {
     console.log(escapeHtmlUse)
     })
     
-    
+
 app.listen(port, () => {
     console.log(`Server is running on port:${port}`)
   })
